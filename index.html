@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Countdown</title>
+    <title>Happy Valentines</title>
     <style>
         body {
             background: url('https://i.ibb.co/3yKfHyHp/mercedes.jpg') no-repeat center center fixed;
@@ -47,11 +47,31 @@
             background: linear-gradient(90deg, #00ff00, #009900);
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
             cursor: pointer;
+            animation: float 2s ease-in-out infinite;
         }
 
         .btn.available:hover {
             background: linear-gradient(90deg, #009900, #00ff00);
             box-shadow: 0 0 20px rgba(0, 255, 0, 1);
+            animation: floatFast 1s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes floatFast {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         footer {
@@ -106,7 +126,7 @@
             const clockElement = document.getElementById('clock');
 
             if (timeLeft <= 0) {
-                clockElement.innerHTML = "00:00:00:00 ❤️";
+                clockElement.innerHTML = "00:00:00:00";
                 continueBtn.innerHTML = 'Available Now';
                 continueBtn.disabled = false;
                 continueBtn.classList.add('available');
