@@ -5,24 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Special</title>
     <style>
-        /* Previous CSS remains the same */
-        /* Add disabled button styling */
+        /* Background */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Neon Countdown */
+        #clock {
+            font-size: 40px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0066, 0 0 20px #ff0066, 0 0 40px #ff0066;
+            animation: glow 1.5s infinite alternate;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.5);
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff0066, 0 0 20px #ff0066, 0 0 30px #ff0066; }
+            100% { text-shadow: 0 0 20px #ff66b2, 0 0 30px #ff66b2, 0 0 40px #ff66b2; }
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        h1 {
+            font-size: 28px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Button Styling */
+        button {
+            background: linear-gradient(45deg, #ff0066, #ff3399);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.6);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #cc0052, #ff1a75);
+            box-shadow: 0 0 20px rgba(255, 0, 102, 0.8);
+        }
+
+        /* Disabled Button */
         button:disabled {
             background: #666;
             cursor: not-allowed;
             box-shadow: none;
         }
-        button:disabled:hover {
-            background: #666;
-            box-shadow: none;
+
+        /* WhatsApp Link */
+        .whatsapp-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background: #25d366;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+            transition: 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            background: #1eb354;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
+
     <div id="clock"></div>
 
     <div class="container">
-        <h1>Welcome to the Valentine's Special</h1>
+        <h1>Special Valentine's Countdown</h1>
         <button id="continueBtn" disabled>Loading...</button>
 
         <!-- WhatsApp Channel Link -->
@@ -37,7 +130,7 @@
         function getNextValentine() {
             const today = new Date();
             const year = today.getFullYear();
-            const valentine = new Date(year, 1, 14); // February 14th (month is 0-based)
+            const valentine = new Date(year, 1, 14); // February 14th (Feb = index 1)
             return today > valentine ? new Date(year + 1, 1, 14) : valentine;
         }
 
@@ -63,9 +156,8 @@
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            // Display countdown
-            clockElement.innerHTML = 
-                `Valentine's Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            // Display countdown with neon effect
+            clockElement.innerHTML = `Valentine's Countdown: <br> ${days}d ${hours}h ${minutes}m ${seconds}s`;
 
             // Update button text with total hours remaining (ceiling)
             const totalHours = Math.ceil(timeLeft / (1000 * 60 * 60));
@@ -78,5 +170,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
     </script>
+
 </body>
 </html>
