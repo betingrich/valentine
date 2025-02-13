@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Countdown</title>
     <style>
-        /* Background Image */
         body {
             background: url('https://i.ibb.co/3yKfHyHp/mercedes.jpg') no-repeat center center fixed;
             background-size: cover;
@@ -20,16 +19,14 @@
             text-align: center;
         }
 
-        /* Digital LED Clock */
         #clock {
-            font-size: 2.5rem; /* Medium size */
+            font-size: 2.5rem;
             font-weight: bold;
             letter-spacing: 3px;
             text-shadow: 0 0 10px cyan, 0 0 20px cyan;
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* Button Style */
         .btn {
             margin-top: 15px;
             padding: 12px 25px;
@@ -46,12 +43,17 @@
             display: inline-block;
         }
 
-        .btn:hover {
-            background: linear-gradient(90deg, pink, red);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+        .btn.available {
+            background: linear-gradient(90deg, #00ff00, #009900);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+            cursor: pointer;
         }
 
-        /* Footer */
+        .btn.available:hover {
+            background: linear-gradient(90deg, #009900, #00ff00);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 1);
+        }
+
         footer {
             position: fixed;
             bottom: 10px;
@@ -61,10 +63,9 @@
             text-align: center;
         }
 
-        /* Responsive Adjustments */
         @media screen and (max-width: 600px) {
             #clock {
-                font-size: 2rem; /* Smaller for phones */
+                font-size: 2rem;
             }
             .btn {
                 font-size: 1rem;
@@ -77,10 +78,7 @@
     <h1>Valentine's Countdown</h1>
     <div id="clock">00:00:00:00</div>
 
-    <!-- Countdown Button -->
     <button id="continueBtn" class="btn" disabled>Loading...</button>
-
-    <!-- WhatsApp Channel Button -->
     <a class="btn" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our Channel</a>
 
     <footer>
@@ -90,9 +88,13 @@
     <script>
         function getNextValentine() {
             const today = new Date();
-            const year = today.getFullYear();
-            const valentine = new Date(year, 1, 14); // February 14th
-            return today > valentine ? new Date(year + 1, 1, 14) : valentine;
+            const currentYear = today.getFullYear();
+            const todayMidnight = new Date(currentYear, today.getMonth(), today.getDate());
+            const valentineThisYear = new Date(currentYear, 1, 14);
+
+            return todayMidnight > valentineThisYear 
+                ? new Date(currentYear + 1, 1, 14)
+                : valentineThisYear;
         }
 
         function updateCountdown() {
@@ -105,29 +107,29 @@
 
             if (timeLeft <= 0) {
                 clockElement.innerHTML = "00:00:00:00 ❤️";
-                continueBtn.innerHTML = 'Continue';
+                continueBtn.innerHTML = 'Available Now';
                 continueBtn.disabled = false;
+                continueBtn.classList.add('available');
                 continueBtn.onclick = () => window.location.href = 'gender-selection.html';
-                return;
+            } else {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                clockElement.innerHTML = `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                continueBtn.innerHTML = `Available in ${days}d ${hours}h ${minutes}m`;
+                continueBtn.disabled = true;
+                continueBtn.classList.remove('available');
+                continueBtn.onclick = null;
             }
-
-            // Calculate time
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            // Display countdown
-            clockElement.innerHTML = `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            // Update button text
-            continueBtn.innerHTML = `Available in ${days}d ${hours}h ${minutes}m`;
-            continueBtn.disabled = true;
         }
 
+        // Initial update
+        updateCountdown();
         // Update every second
         setInterval(updateCountdown, 1000);
-        updateCountdown();
     </script>
 </body>
 </html>
