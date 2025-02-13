@@ -5,105 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Special</title>
     <style>
-        /* Background */
-        body {
-            font-family: Arial, sans-serif;
-            background: url('https://i.ibb.co/3yKfHyHp/mercedes.jpg') no-repeat center center/cover;
-            text-align: center;
-            color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        /* Previous CSS remains the same */
+        /* Add disabled button styling */
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            box-shadow: none;
         }
-
-        /* Timer */
-        #clock {
-            font-size: 30px;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
-            margin-top: 20px;
-        }
-
-        /* Main Container */
-        .container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            margin: 10% auto;
-            max-width: 500px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        h1 {
-            font-size: 28px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-        }
-
-        button {
-            background: #ff0066;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #cc0052;
-            box-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            bottom: 0;
-        }
-
-        /* WhatsApp Channel Link */
-        .whatsapp-link {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 15px;
-            background: #25d366;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
-            transition: 0.3s;
-        }
-
-        .whatsapp-link:hover {
-            background: #1eb354;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.9);
+        button:disabled:hover {
+            background: #666;
+            box-shadow: none;
         }
     </style>
 </head>
 <body>
-
     <div id="clock"></div>
 
     <div class="container">
         <h1>Welcome to the Valentine's Special</h1>
-        <button onclick="window.location.href='quotes.html'">Get Your Quote</button>
+        <button id="continueBtn" disabled>Loading...</button>
 
         <!-- WhatsApp Channel Link -->
         <a class="whatsapp-link" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our WhatsApp Channel</a>
@@ -114,18 +34,49 @@
     </footer>
 
     <script>
-        function updateClock() {
-            let now = new Date();
-            let hours = now.getHours().toString().padStart(2, '0');
-            let minutes = now.getMinutes().toString().padStart(2, '0');
-            let seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').innerText = `Current Time: ${hours}:${minutes}:${seconds}`;
+        function getNextValentine() {
+            const today = new Date();
+            const year = today.getFullYear();
+            const valentine = new Date(year, 1, 14); // February 14th (month is 0-based)
+            return today > valentine ? new Date(year + 1, 1, 14) : valentine;
         }
 
-        // Update time every second
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+        function updateCountdown() {
+            const valentineDate = getNextValentine();
+            const now = new Date();
+            const timeLeft = valentineDate - now;
 
+            const continueBtn = document.getElementById('continueBtn');
+            const clockElement = document.getElementById('clock');
+
+            if (timeLeft <= 0) {
+                clockElement.innerHTML = "Happy Valentine's Day! ❤️";
+                continueBtn.innerHTML = 'Continue';
+                continueBtn.disabled = false;
+                continueBtn.onclick = () => window.location.href = 'gender.html';
+                return;
+            }
+
+            // Calculate time components
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display countdown
+            clockElement.innerHTML = 
+                `Valentine's Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // Update button text with total hours remaining (ceiling)
+            const totalHours = Math.ceil(timeLeft / (1000 * 60 * 60));
+            continueBtn.innerHTML = `Available in ${totalHours}h`;
+            continueBtn.disabled = true;
+            continueBtn.onclick = null;
+        }
+
+        // Update every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+    </script>
 </body>
 </html>
