@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Valentine's Quote</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="greeting"></h2>
+        <p id="quote"></p>
+        <button onclick="window.location.href='boyfriend.html'">Continue</button>
+    </div>
+
+    <footer>
+        <p>Marisel Made It.</p>
+    </footer>
+
+    <script>
+        let name = localStorage.getItem("userName");
+        let quotes = [
+            "You are loved more than you know.",
+            "Wishing you the most romantic day!",
+            "You are a gift to everyone around you.",
+            "Your heart shines brighter than the stars.
+    "You are loved more than you know.",
+    "Wishing you a day as special as you are.",
+    "Your heart shines brighter than the stars.",
+    "Love and happiness surround you today and always.",
+    "You are a gift to everyone around you.",
+    "May your day be filled with love and warmth.",
+    "You bring joy to everyone you meet.",
+    "Love is a journey, and I’m grateful to have you in my life.",
+    "No matter where life takes us, I’m glad you’re part of my story.",
+    "Happiness looks good on you—keep shining!",
+    "You deserve all the love and kindness in the world.",
+    "You are enough, just as you are.",
+    "Your kindness and warmth make the world a better place.",
+    "May today remind you how truly special you are.",
+    "You are a light in so many lives—never forget that.",
+    "Sending you warmth and joy today and always.",
+    "May your heart always be full of love and happiness.",
+    "Wishing you a Valentine’s Day as bright as your smile!",
+    "You are unique, you are special, and you are deeply loved.",
+    "Your heart is full of love, and it inspires everyone around you.",
+    "Today is just another day to remind you that you matter.",
+    "Love is not just about romance—it's about connection, kindness, and joy.",
+    "The best love is the one you give yourself. You are amazing!",
+    "On this day of love, know that you are deeply valued and appreciated.",
+    "Valentine’s Day is about celebrating love in all its beautiful forms, including the love you bring to others.",
+    "Your presence makes the world a little brighter.",
+    "Sending you love, joy, and all the good vibes today!",
+    "You make a difference in the lives of those around you.",
+    "Self-love is the greatest gift—celebrate yourself today and always!",
+    "Wishing you peace, happiness, and a heart full of love."
+];
+        ];
+        let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("greeting").innerText = `Happy Valentine's, ${name}!`;
+        document.getElementById("quote").innerText = randomQuote;
+    </script>
+
+</body>
+</html>
