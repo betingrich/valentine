@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(45deg, #ff0066, #ff99cc);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .active-page {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        /* Countdown Styles */
+        #countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .timer {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 20px;
+            animation: pulse 1s infinite;
+        }
+
+        /* Gender Selection */
+        .gender-box {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .gender-btn {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.9);
+        }
+
+        /* Name Input */
+        .name-input {
+            margin-top: 50px;
+        }
+
+        input[type="text"] {
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border: none;
+            margin: 20px;
+        }
+
+        /* Note Display */
+        .note-container {
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .note-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5em;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Footer Styles */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        /* Quotes Page */
+        .quote-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .quote-box {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Countdown Page -->
+    <div id="countdown" class="active-page">
+        <h1>Valentine's Day Countdown</h1>
+        <div class="timer" id="timer"></div>
+        <a href="https://whatsapp.com/channel/0029Vapy1ln1SWt5ZNPtUu3V" target="_blank" class="whatsapp-btn">Join Our WhatsApp Channel</a>
+    </div>
+
+    <!-- Gender Selection -->
+    <div id="genderPage" class="page">
+        <h1>Select Your Gender</h1>
+        <div class="gender-box">
+            <button class="gender-btn" onclick="selectGender('male')">Male</button>
+            <button class="gender-btn" onclick="selectGender('female')">Female</button>
+        </div>
+    </div>
+
+    <!-- Name Input -->
+    <div id="namePage" class="page">
+        <h1>Enter Your Name</h1>
+        <div class="name-input">
+            <input type="text" id="userName" placeholder="Your Name">
+            <button onclick="generateNote()">Create My Note</button>
+        </div>
+    </div>
+
+    <!-- Note Display -->
+    <div id="notePage" class="page">
+        <div class="note-container">
+            <div class="note-text" id="noteContent"></div>
+        </div>
+        <button onclick="downloadNote()">Download/Share</button>
+    </div>
+
+    <!-- Quotes Page -->
+    <div id="quotesPage" class="page">
+        <div class="quote-menu">
+            <button onclick="showQuotes('boyfriend')">To Boyfriend</button>
+            <button onclick="showQuotes('girlfriend')">To Girlfriend</button>
+        </div>
+        <div id="quotesContainer"></div>
+    </div>
+
+    <footer>Made By Marisel</footer>
+
+    <script>
+        // JavaScript Code
+        let userGender = '';
+        let userName = '';
+        const quotes = {
+            boyfriend: [...],
+            girlfriend: [...]
+        };
+
+        // Countdown Timer
+        const countDownDate = new Date("Feb 14, 2025 00:00:00").getTime();
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById('countdown').style.display = 'none';
+                showPage('genderPage');
+            }
+        }, 1000);
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelector('.active-page').classList.remove('active-page');
+            document.getElementById(pageId).classList.add('active-page');
+        }
+
+        // Generate Romantic Note
+        function generateNote() {
+            userName = document.getElementById('userName').value;
+            const notes = {
+                female: [
+                    `Hey ${userName}, my love for you is like the universe - endless and ever-expanding...`,
+                    // More notes...
+                ],
+                male: [
+                    `My dearest ${userName}, every moment with you feels like a perfect love story...`,
+                    // More notes...
+                ]
+            };
+            
+            const note = notes[userGender][Math.floor(Math.random() * notes[userGender].length)];
+            document.getElementById('noteContent').innerHTML = note;
+            document.querySelector('.note-container').style.backgroundImage = 
+                `url(${userGender === 'female' ? 'https://i.ibb.co/R4yhrk9T/mercedes.jpg' : 'https://i.ibb.co/zTVrmGSx/mercedes.jpg'})`;
+            showPage('notePage');
+        }
+
+        // Share/Download Functionality
+        function downloadNote() {
+            html2canvas(document.querySelector('.note-container')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'valentine-note.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        // Quotes Page Functions
+        function showQuotes(type) {
+            const container = document.getElementById('quotesContainer');
+            container.innerHTML = quotes[type].map(quote => `
+                <div class="quote-box">
+                    ${quote}
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${quote}')">Copy</button>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+                                                         </html>
