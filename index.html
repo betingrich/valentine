@@ -22,61 +22,54 @@
 
         /* Digital LED Clock */
         #clock {
-            font-size: 4rem;
+            font-size: 2.5rem; /* Medium size */
             font-weight: bold;
-            text-align: center;
-            letter-spacing: 5px;
-            text-shadow: 0 0 10px cyan, 0 0 20px cyan, 0 0 40px cyan;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan;
             font-family: 'Orbitron', sans-serif;
         }
 
-        /* Button */
-        button {
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+        /* Button Style */
+        .btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             font-weight: bold;
             color: white;
             background: linear-gradient(90deg, red, pink);
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+            text-decoration: none;
+            display: inline-block;
         }
 
-        button:hover {
+        .btn:hover {
             background: linear-gradient(90deg, pink, red);
             box-shadow: 0 0 20px rgba(255, 0, 0, 1);
         }
 
-        button:disabled {
-            background: grey;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        /* WhatsApp Channel Link */
-        .whatsapp-link {
-            display: block;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            text-shadow: 0 0 10px cyan;
-        }
-
-        .whatsapp-link:hover {
-            text-shadow: 0 0 20px cyan;
-        }
-
         /* Footer */
         footer {
-            position: absolute;
-            bottom: 20px;
+            position: fixed;
+            bottom: 10px;
             font-size: 1rem;
             text-shadow: 0 0 5px cyan;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 600px) {
+            #clock {
+                font-size: 2rem; /* Smaller for phones */
+            }
+            .btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
@@ -84,10 +77,11 @@
     <h1>Valentine's Countdown</h1>
     <div id="clock">00:00:00:00</div>
 
-    <button id="continueBtn" disabled>Loading...</button>
+    <!-- Countdown Button -->
+    <button id="continueBtn" class="btn" disabled>Loading...</button>
 
-    <!-- WhatsApp Channel Link -->
-    <a class="whatsapp-link" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our WhatsApp Channel</a>
+    <!-- WhatsApp Channel Button -->
+    <a class="btn" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our Channel</a>
 
     <footer>
         <p>Marisel Made It.</p>
@@ -123,10 +117,10 @@
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            // Display countdown in LED format
+            // Display countdown
             clockElement.innerHTML = `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-            // Update button text with remaining time
+            // Update button text
             continueBtn.innerHTML = `Available in ${days}d ${hours}h ${minutes}m`;
             continueBtn.disabled = true;
         }
