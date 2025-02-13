@@ -5,66 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Special</title>
     <style>
-        /* General Styles */
+        /* Background */
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #ff0099, #493240, #1e90ff, #ff9900);
-            background-size: 300% 300%;
-            animation: gradientBG 10s infinite alternate;
+            background: url('https://i.ibb.co/3yKfHyHp/mercedes.jpg') no-repeat center center/cover;
             text-align: center;
             color: white;
             margin: 0;
             padding: 0;
-        }
-
-        /* Background Animation */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Header */
-        header {
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* Timer */
-        #timer {
+        #clock {
             font-size: 30px;
             font-weight: bold;
-            margin: 20px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8);
-            color: #ff0099;
-            animation: neonGlow 1.5s infinite alternate;
+            text-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
+            margin-top: 20px;
         }
 
-        /* Timer Neon Glow */
-        @keyframes neonGlow {
-            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8); }
-            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 0, 153, 1); }
-            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 0, 153, 1); }
+        /* Main Container */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 10% auto;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        button {
+            background: #ff0066;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #cc0052;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
         }
 
         /* Footer */
         footer {
-            margin-top: 30px;
-            padding: 10px;
-            font-size: 18px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            text-shadow: 0 0 5px #ff0099;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* WhatsApp Channel Link */
+        .whatsapp-link {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 15px;
+            background: #25d366;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+            transition: 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            background: #1eb354;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.9);
         }
     </style>
 </head>
 <body>
-    <header>Welcome to the Valentine's Special!</header>
-    <div id="timer">Countdown: 10 Days Left!</div>
 
-    <footer>Marisel Made It</footer>
+    <div id="clock"></div>
+
+    <div class="container">
+        <h1>Welcome to the Valentine's Special</h1>
+        <button onclick="window.location.href='quotes.html'">Get Your Quote</button>
+
+        <!-- WhatsApp Channel Link -->
+        <a class="whatsapp-link" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our WhatsApp Channel</a>
+    </div>
+
+    <footer>
+        <p>Marisel Made It.</p>
+    </footer>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('clock').innerText = `Current Time: ${hours}:${minutes}:${seconds}`;
+        }
+
+        // Update time every second
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
 </body>
 </html>
