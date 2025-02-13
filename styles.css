@@ -1,0 +1,208 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, #ff0099, #493240, #1e90ff, #ff9900);
+    background-size: 300% 300%;
+    animation: gradientBG 10s infinite alternate;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Neon Gradient Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header */
+header {
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Countdown Timer */
+#timer {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8);
+    color: #ff0099;
+    animation: neonGlow 1.5s infinite alternate;
+}
+
+/* Timer Neon Glow Animation */
+@keyframes neonGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8); }
+    50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 0, 153, 1); }
+    100% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 0, 153, 1); }
+}
+
+/* Buttons */
+button {
+    background: #ff0099;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 0, 153, 0.5);
+}
+
+/* Button Hover */
+button:hover {
+    background: #ff66cc;
+    box-shadow: 0 0 15px rgba(255, 102, 204, 1);
+}
+
+/* Quote Grid */
+.quote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Quote Tiles */
+.quote-box {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ff66cc;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 102, 204, 0.5);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.quote-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 102, 204, 1);
+}
+
+/* Mini Toggle Menu */
+.menu-toggle {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Mini Menu Hover */
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Mini Menu Dropdown */
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+}
+
+/* Show Dropdown */
+.menu-dropdown.show {
+    display: block;
+}
+
+/* Menu Links */
+.menu-dropdown a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Menu Hover */
+.menu-dropdown a:hover {
+    background: #ff0099;
+}
+
+/* Gender Selection Page */
+.gender-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* Gender Buttons */
+.gender-button {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.gender-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+}
+
+/* Girlfriend Button */
+.girlfriend {
+    background: #ff66cc;
+}
+
+/* Boyfriend Button */
+.boyfriend {
+    background: #0099ff;
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 18px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-shadow: 0 0 5px #ff0099;
+}
+
+/* WhatsApp Channel Button */
+.whatsapp-button {
+    background: green;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* WhatsApp Hover */
+.whatsapp-button:hover {
+    background: #00cc00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 1);
+}
