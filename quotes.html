@@ -4,40 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Valentine's Quote</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* General Styling */
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(45deg, #ff0066, #6600cc, #0099ff, #ffcc00);
             background-size: 400% 400%;
             animation: animateBG 8s infinite alternate;
-            text-align: center;
             color: white;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Background Animation */
         @keyframes animateBG {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
-        /* Container */
-        .container {
-            margin-top: 15%;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
-            display: inline-block;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            animation: fadeIn 1s ease-in-out;
+        .typing-text {
+            position: fixed;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-family: monospace;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
         }
 
-        /* Fade In Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white; }
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            max-width: 90%;
         }
 
         h2 {
@@ -47,47 +62,121 @@
 
         p {
             font-size: 18px;
-            margin: 15px 0;
+            margin: 15px auto;
+            max-width: 80%;
         }
 
-        button {
+        .copy-btn {
+            position: fixed;
+            bottom: 110px;
+            right: 20px;
             background: #ff0066;
             color: white;
             border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            border-radius: 5px;
+            padding: 12px;
+            border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
-            transition: 0.3s;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        button:hover {
-            background: #cc0052;
-            box-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            font-size: 16px;
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #25D366;
             color: white;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px rgba(37, 211, 102, 0.5);
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Right-aligned menu */
+        .menu-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-dropdown {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            flex-direction: column;
+            min-width: 120px;
+        }
+
+        .menu-dropdown a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        .menu-dropdown a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
+    <div class="typing-text">Tap the menu button for more options ▼</div>
 
-    <div class="container">
-        <h2 id="greeting"></h2>
-        <p id="quote"></p>
-        <button onclick="window.location.href='boyfriend.html'">Continue</button>
+    <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <div class="menu-dropdown" id="menu">
+        <a href="boyfriend.html">Boyfriend</a>
+        <a href="girlfriend.html">Girlfriend</a>
     </div>
 
-    <footer>
-        <p>Marisel Made It.</p>
-    </footer>
+    <div class="content">
+        <h2 id="greeting"></h2>
+        <p id="quote"></p>
+    </div>
+
+    <button class="copy-btn" onclick="copyQuote()"><i class="fas fa-copy"></i></button>
+
+    <button class="whatsapp-btn" onclick="window.location.href='https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x'">
+        <i class="fab fa-whatsapp"></i> Join Our Channel
+    </button>
+
+    <div class="footer">
+        Made by Marisel
+    </div>
 
     <script>
         let name = localStorage.getItem("userName") || "Dear";
@@ -101,33 +190,32 @@
             "You bring joy to everyone you meet.",
             "Love is a journey, and I’m grateful to have you in my life.",
             "No matter where life takes us, I’m glad you’re part of my story.",
-            "Happiness looks good on you—keep shining!",
-            "You deserve all the love and kindness in the world.",
-            "You are enough, just as you are.",
-            "Your kindness and warmth make the world a better place.",
-            "May today remind you how truly special you are.",
-            "You are a light in so many lives—never forget that.",
-            "Sending you warmth and joy today and always.",
-            "May your heart always be full of love and happiness.",
-            "Wishing you a Valentine’s Day as bright as your smile!",
-            "You are unique, you are special, and you are deeply loved.",
-            "Your heart is full of love, and it inspires everyone around you.",
-            "Today is just another day to remind you that you matter.",
-            "Love is not just about romance—it's about connection, kindness, and joy.",
-            "The best love is the one you give yourself. You are amazing!",
-            "On this day of love, know that you are deeply valued and appreciated.",
-            "Valentine’s Day is about celebrating love in all its beautiful forms, including the love you bring to others.",
-            "Your presence makes the world a little brighter.",
-            "Sending you love, joy, and all the good vibes today!",
-            "You make a difference in the lives of those around you.",
-            "Self-love is the greatest gift—celebrate yourself today and always!",
-            "Wishing you peace, happiness, and a heart full of love."
+            "Happiness looks good on you—keep shining!"
         ];
 
         let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         document.getElementById("greeting").innerText = `Happy Valentine's, ${name}!`;
         document.getElementById("quote").innerText = randomQuote;
-    </script>
 
+        function copyQuote() {
+            navigator.clipboard.writeText(randomQuote).then(() => {
+                alert("Quote copied to clipboard!");
+            });
+        }
+
+        function toggleMenu() {
+            let menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            let menu = document.getElementById('menu');
+            let menuBtn = document.querySelector('.menu-btn');
+            if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+                menu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
