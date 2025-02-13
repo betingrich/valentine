@@ -3,27 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentine's Countdown</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Valentine's Special</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff0099, #493240, #1e90ff, #ff9900);
+            background-size: 300% 300%;
+            animation: gradientBG 10s infinite alternate;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Background Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Timer */
+        #timer {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8);
+            color: #ff0099;
+            animation: neonGlow 1.5s infinite alternate;
+        }
+
+        /* Timer Neon Glow */
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 153, 0.8); }
+            50% { text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 25px rgba(255, 0, 153, 1); }
+            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 0, 153, 1); }
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 18px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-shadow: 0 0 5px #ff0099;
+        }
+    </style>
 </head>
 <body>
+    <header>Welcome to the Valentine's Special!</header>
+    <div id="timer">Countdown: 10 Days Left!</div>
 
-    <div class="container">
-        <h1>Countdown to Valentine's Day</h1>
-        <div id="countdown"></div>
-
-        <!-- Celebration & Continue Button (Hidden Until Timer Ends) -->
-        <div id="celebration" class="hidden">
-            <h2 id="valentine-text">Happy Valentine's Day!</h2>
-            <button id="continue-btn" onclick="window.location.href='gender-selection.html'">Continue</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>Marisel Made It.</p>
-        <a href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" class="whatsapp-btn">Join Our WhatsApp Channel</a>
-    </footer>
-
-    <script src="script.js"></script>
+    <footer>Marisel Made It</footer>
 </body>
 </html>
