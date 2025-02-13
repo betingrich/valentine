@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Gender</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Select Your Gender</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
-        <h1>Enter Your Name & Gender</h1>
-        <input type="text" id="nameInput" placeholder="Enter your name">
-        <select id="genderInput">
-            <option value="boy">Boy</option>
-            <option value="girl">Girl</option>
-        </select>
-        <button onclick="saveUserData()">Continue</button>
-    </div>
-   <!-- 🔹 WhatsApp Channel Button -->
-    <div class="whatsapp-button">
-        <a href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-            Join Our WhatsApp Channel
-        </a>
+        <h2>Select Your Gender</h2>
+        <button onclick="window.location.href='name.html?gender=boy'">Boy</button>
+        <button onclick="window.location.href='name.html?gender=girl'">Girl</button>
     </div>
 
-    <!-- 🔹 Footer Section -->
     <footer>
-        <p>Made with ❤️ by Marisel | <a href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x">Join WhatsApp Channel</a></p>
+        <p>Marisel Made It.</p>
+        <a href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" class="whatsapp-btn">Join Our WhatsApp Channel</a>
     </footer>
-  
 
-    <script src="script.js"></script>
 </body>
 </html>
