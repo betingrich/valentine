@@ -3,100 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotes for Girlfriend</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Valentine's Quotes for Your Love</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff0066, #6600cc, #0099ff, #ffcc00);
+            background-size: 400% 400%;
+            animation: animateBG 8s infinite alternate;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Background Animation */
+        @keyframes animateBG {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        header {
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Grid for Quotes */
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Quote Tile */
+        .quote-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            position: relative;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .quote-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .quote-box p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Copy Button */
+        .copy-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .copy-btn:hover {
+            color: #ffcc00;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Valentine's Quotes for Your Love ❤️</h1>
+        <h1>Valentine's Quotes for Your Love</h1>
     </header>
 
     <div class="quote-grid">
-        <!-- Quotes for Girlfriend -->
-        <div class="quote-box">
-            <p>"You make my heart skip a beat, my love. Happy Valentine's!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"My love for you grows stronger every day. I’m so lucky to have you."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are my sunshine, my moonlight, my everything!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Every love story is beautiful, but ours is my favorite."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Happy Valentine's, my angel! You are the love of my life."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are the sweetest chapter in my love story. I adore you!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Loving you is my favorite thing in the world. Happy Valentine's, babe!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You bring so much happiness and love into my life. I’m forever grateful!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are the most beautiful person I have ever met, inside and out."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Every time I see you, my heart skips a beat. You are my everything!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are the melody in my life's song, the light in my darkest days."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"I love you more than words can express. You are my heart, my soul."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You make every day special just by being in it. Happy Valentine's, my queen!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"No matter what happens, you will always be the love of my life."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"I thank the universe every day for bringing you into my life."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Your smile is my favorite sight, your laugh is my favorite sound."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"With you, love feels magical, beautiful, and everlasting."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are my greatest treasure, my deepest love, my happiest place."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"You are the reason my world is full of love and happiness."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Being with you is my greatest joy. I love you more than words can say!"</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
-        <div class="quote-box">
-            <p>"Happy Valentine's, my love! Every moment with you is a blessing."</p>
-            <button onclick="copyToClipboard(this)">Copy</button>
-        </div>
+        <div class="quote-box"><p>"You make my heart skip a beat, my love. Happy Valentine's!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"My love for you grows stronger every day. I’m so lucky to have you."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are my sunshine, my moonlight, my everything!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Every love story is beautiful, but ours is my favorite."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Happy Valentine's, my angel! You are the love of my life."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are the sweetest chapter in my love story. I adore you!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Loving you is my favorite thing in the world. Happy Valentine's, babe!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You bring so much happiness and love into my life. I’m forever grateful!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are the most beautiful person I have ever met, inside and out."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Every time I see you, my heart skips a beat. You are my everything!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are the melody in my life's song, the light in my darkest days."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"I love you more than words can express. You are my heart, my soul."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You make every day special just by being in it. Happy Valentine's, my queen!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"No matter what happens, you will always be the love of my life."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"I thank the universe every day for bringing you into my life."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Your smile is my favorite sight, your laugh is my favorite sound."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"With you, love feels magical, beautiful, and everlasting."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are my greatest treasure, my deepest love, my happiest place."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"You are the reason my world is full of love and happiness."</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
+        <div class="quote-box"><p>"Being with you is my greatest joy. I love you more than words can say!"</p><button class="copy-btn" onclick="copyToClipboard(this)"><i class="fas fa-copy"></i></button></div>
     </div>
 
     <footer>Marisel Made It.</footer>
@@ -104,8 +121,9 @@
     <script>
         function copyToClipboard(button) {
             const text = button.previousElementSibling.innerText;
-            navigator.clipboard.writeText(text);
-            alert("Quote copied to clipboard!");
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Quote copied to clipboard!");
+            });
         }
     </script>
 </body>
