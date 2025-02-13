@@ -4,7 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Valentine's Quote</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff0066, #6600cc, #0099ff, #ffcc00);
+            background-size: 400% 400%;
+            animation: animateBG 8s infinite alternate;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Background Animation */
+        @keyframes animateBG {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Container */
+        .container {
+            margin-top: 15%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 24px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        button {
+            background: #ff0066;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #cc0052;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.8);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+    </style>
 </head>
 <body>
 
@@ -19,44 +90,40 @@
     </footer>
 
     <script>
-        let name = localStorage.getItem("userName");
+        let name = localStorage.getItem("userName") || "Dear";
         let quotes = [
             "You are loved more than you know.",
-            "Wishing you the most romantic day!",
+            "Wishing you a day as special as you are.",
+            "Your heart shines brighter than the stars.",
+            "Love and happiness surround you today and always.",
             "You are a gift to everyone around you.",
-            "Your heart shines brighter than the stars.
-    "You are loved more than you know.",
-    "Wishing you a day as special as you are.",
-    "Your heart shines brighter than the stars.",
-    "Love and happiness surround you today and always.",
-    "You are a gift to everyone around you.",
-    "May your day be filled with love and warmth.",
-    "You bring joy to everyone you meet.",
-    "Love is a journey, and I’m grateful to have you in my life.",
-    "No matter where life takes us, I’m glad you’re part of my story.",
-    "Happiness looks good on you—keep shining!",
-    "You deserve all the love and kindness in the world.",
-    "You are enough, just as you are.",
-    "Your kindness and warmth make the world a better place.",
-    "May today remind you how truly special you are.",
-    "You are a light in so many lives—never forget that.",
-    "Sending you warmth and joy today and always.",
-    "May your heart always be full of love and happiness.",
-    "Wishing you a Valentine’s Day as bright as your smile!",
-    "You are unique, you are special, and you are deeply loved.",
-    "Your heart is full of love, and it inspires everyone around you.",
-    "Today is just another day to remind you that you matter.",
-    "Love is not just about romance—it's about connection, kindness, and joy.",
-    "The best love is the one you give yourself. You are amazing!",
-    "On this day of love, know that you are deeply valued and appreciated.",
-    "Valentine’s Day is about celebrating love in all its beautiful forms, including the love you bring to others.",
-    "Your presence makes the world a little brighter.",
-    "Sending you love, joy, and all the good vibes today!",
-    "You make a difference in the lives of those around you.",
-    "Self-love is the greatest gift—celebrate yourself today and always!",
-    "Wishing you peace, happiness, and a heart full of love."
-];
+            "May your day be filled with love and warmth.",
+            "You bring joy to everyone you meet.",
+            "Love is a journey, and I’m grateful to have you in my life.",
+            "No matter where life takes us, I’m glad you’re part of my story.",
+            "Happiness looks good on you—keep shining!",
+            "You deserve all the love and kindness in the world.",
+            "You are enough, just as you are.",
+            "Your kindness and warmth make the world a better place.",
+            "May today remind you how truly special you are.",
+            "You are a light in so many lives—never forget that.",
+            "Sending you warmth and joy today and always.",
+            "May your heart always be full of love and happiness.",
+            "Wishing you a Valentine’s Day as bright as your smile!",
+            "You are unique, you are special, and you are deeply loved.",
+            "Your heart is full of love, and it inspires everyone around you.",
+            "Today is just another day to remind you that you matter.",
+            "Love is not just about romance—it's about connection, kindness, and joy.",
+            "The best love is the one you give yourself. You are amazing!",
+            "On this day of love, know that you are deeply valued and appreciated.",
+            "Valentine’s Day is about celebrating love in all its beautiful forms, including the love you bring to others.",
+            "Your presence makes the world a little brighter.",
+            "Sending you love, joy, and all the good vibes today!",
+            "You make a difference in the lives of those around you.",
+            "Self-love is the greatest gift—celebrate yourself today and always!",
+            "Wishing you peace, happiness, and a heart full of love."
         ];
+
         let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
         document.getElementById("greeting").innerText = `Happy Valentine's, ${name}!`;
         document.getElementById("quote").innerText = randomQuote;
