@@ -4,42 +4,52 @@ document.addEventListener('DOMContentLoaded', function() {
     const countdownNumbers = document.querySelector('.countdown-numbers');
 
     function getNextValentine() {
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const todayMidnight = new Date(currentYear, today.getMonth(), today.getDate());
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        
+        // Create Valentine's date for current year (February is month 1 in JS)
         const valentineThisYear = new Date(currentYear, 1, 14);
-
-        return todayMidnight > valentineThisYear 
+        
+        // If we've already passed this year's Valentine's, use next year
+        return now > valentineThisYear 
             ? new Date(currentYear + 1, 1, 14)
             : valentineThisYear;
     }
 
     function updateCountdown() {
-        const valentineDate = getNextValentine();
+        const nextValentine = getNextValentine();
         const now = new Date();
-        const timeLeft = valentineDate - now;
+        const timeDiff = nextValentine - now;
 
-        if (timeLeft <= 0) {
-            clockElement.innerHTML = "Happy Valentine's Day!<br>" + 
+        if (timeDiff <= 0) {
+            // Handle immediate update if we cross the threshold
+            setTimeout(updateCountdown, 1000);
+            return;
+        }
+
+        const totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        // Update display elements
+        countdownNumbers.textContent = 
+            `${totalDays.toString().padStart(3, '0')}d ` +
+            `${hours.toString().padStart(2, '0')}h ` +
+            `${minutes.toString().padStart(2, '0')}m ` +
+            `${seconds.toString().padStart(2, '0')}s`;
+
+        continueBtn.textContent = `Available in ${totalDays} day${totalDays !== 1 ? 's' : ''}`;
+
+        // Update availability status
+        if (totalDays <= 0) {
+            clockElement.innerHTML = "❤️ Happy Valentine's Day! ❤️<br>" + 
                                     "<span class='countdown-numbers'>Available Now!</span>";
-            continueBtn.innerHTML = 'Continue to Celebration';
+            continueBtn.textContent = 'Continue to Celebration';
             continueBtn.disabled = false;
             continueBtn.classList.add('available');
             continueBtn.onclick = () => window.location.href = 'gender-selection.html';
         } else {
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            countdownNumbers.innerHTML = `
-                ${days.toString().padStart(2, '0')}d 
-                ${hours.toString().padStart(2, '0')}h 
-                ${minutes.toString().padStart(2, '0')}m 
-                ${seconds.toString().padStart(2, '0')}s
-            `;
-            
-            continueBtn.innerHTML = `Unlocking in ${days} day${days !== 1 ? 's' : ''}`;
             continueBtn.disabled = true;
             continueBtn.classList.remove('available');
             continueBtn.onclick = null;
