@@ -6,7 +6,7 @@
     <title>Valentine's Countdown</title>
     <style>
         body {
-            background: url('https://i.ibb.co/tMsPkFmR/mercedes.jpg') no-repeat center center fixed;
+            background: url('https://i.ibb.co/3yKfHyHp/mercedes.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -20,15 +20,22 @@
         }
 
         #clock {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-shadow: 0 0 10px cyan, 0 0 20px cyan;
             font-family: 'Orbitron', sans-serif;
         }
 
-        .btn {
+        .countdown-numbers {
+            font-size: 3rem;
+            display: block;
             margin-top: 15px;
+            text-shadow: 0 0 15px cyan;
+        }
+
+        .btn {
+            margin-top: 25px;
             padding: 12px 25px;
             font-size: 1.1rem;
             font-weight: bold;
@@ -65,6 +72,9 @@
 
         @media screen and (max-width: 600px) {
             #clock {
+                font-size: 1.2rem;
+            }
+            .countdown-numbers {
                 font-size: 2rem;
             }
             .btn {
@@ -76,7 +86,10 @@
 </head>
 <body>
     <h1>Valentine's Countdown</h1>
-    <div id="clock">00:00:00:00</div>
+    <div id="clock">
+        Available in:<br>
+        <span class="countdown-numbers">00d 00h 00m 00s</span>
+    </div>
 
     <button id="continueBtn" class="btn" disabled>Loading...</button>
     <a class="btn" href="https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x" target="_blank">Join Our Channel</a>
